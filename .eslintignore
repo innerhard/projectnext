@@ -1,0 +1,7 @@
+**/build/*
+src/assets/*
+webpack.*
+!src/
+**/node_modules/*
+**/out/*
+**/.next/*

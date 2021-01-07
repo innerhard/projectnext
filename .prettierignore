@@ -1,0 +1,6 @@
+.cache
+.next
+helm
+package.json
+package-lock.json
+public
