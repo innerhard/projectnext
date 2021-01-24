@@ -1,7 +1,7 @@
 {
-    "menu": [
-        { "id": 1, "href": "/" },
-        { "id": 2, "href": "/course" }
+    "data": [
+        { "id": 1, "href": "/", "description": "Home" },
+        { "id": 2, "href": "/course", "description": "Course" }
     ],
     "course": [
         { "id": 1, "title": "Курс по html", "description": "Lorem dawdad awdawdaw" },

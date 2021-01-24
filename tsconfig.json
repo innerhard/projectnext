@@ -1,70 +1,48 @@
 {
-  "compilerOptions": {
-    "target": "esnext" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
-    "module": "esnext" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
-    "declaration": true /* Generates corresponding '.d.ts' file. */,
-    "outDir": "build" /* Redirect output structure to the directory. */,
-    /* Strict Type-Checking Options */
-    "strict": true /* Enable all strict type-checking options. */,
-    /* Module Resolution Options */
-    "allowSyntheticDefaultImports": true /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */,
-    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
-    "jsx": "preserve",
-    "lib": [
-      "dom",
-      "es2017"
-    ],
-    "moduleResolution": "node",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "baseUrl": "src",
-    "paths": {
-      "@components": [
-        "components"
-      ],
-      "@localTypes/*": [
-        "types/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ],
-      "@hooks/*": [
-        "hooks/*"
-      ],
-      "@mocks": [
-        "mocks"
-      ],
-      "@pages": [
-        "pages"
-      ],
-      "@constants": [
-        "constants"
-      ],
-      "@specialСases": [
-        "specialСases/*"
-      ]
+    "compilerOptions": {
+        "target": "esnext" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
+        "module": "esnext" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
+        "declaration": true /* Generates corresponding '.d.ts' file. */,
+        "outDir": "build" /* Redirect output structure to the directory. */,
+        /* Strict Type-Checking Options */
+        "strict": true /* Enable all strict type-checking options. */,
+        /* Module Resolution Options */
+        "allowSyntheticDefaultImports": true /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */,
+        "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+        "jsx": "preserve",
+        "lib": ["dom", "es2017"],
+        "moduleResolution": "node",
+        "allowJs": true,
+        "skipLibCheck": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "baseUrl": "src",
+        "paths": {
+            "@components": ["components"],
+            "@types/*": ["types/*"],
+            "@theme": ["theme"],
+            "@utils/*": ["utils/*"],
+            "@hooks/*": ["hooks/*"],
+            "@mocks": ["mocks"],
+            "@pages": ["pages"],
+            "@constants": ["constants"],
+            "@specialСases": ["specialСases/*"]
+        },
+        "emitDeclarationOnly": true,
+        "plugins": [
+            {
+                "transform": "typescript-transform-paths",
+                "afterDeclarations": true
+            }
+        ],
+        "noEmit": true
     },
-    "emitDeclarationOnly": true,
-    "plugins": [
-      {
-        "transform": "typescript-transform-paths",
-        "afterDeclarations": true
-      }
-    ],
-    "noEmit": true
-  },
-  "include": [
-    "src/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "include": ["src/*"],
+    "exclude": ["node_modules"]
 }

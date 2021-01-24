@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { LayoutPage, Lesson } from '@components'
+import { LayoutPage, Lesson } from '../src/components/organisms/'
 import axios from 'axios'
 
 const Course = () => {
