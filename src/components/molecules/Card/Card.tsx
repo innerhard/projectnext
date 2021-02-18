@@ -1,20 +1,30 @@
 import React, { FC } from 'react'
 import { Styled } from './styled'
-import { Typography } from '@material-ui/core'
+import { Typography, Button } from '@material-ui/core'
 
 type TCardProps = {
     linkImage: string
     alt: string
+    title?: string
+    description?: string
+    price?: string
 }
 
-export const Card: FC<TCardProps> = ({ linkImage, alt }) => {
+export const Card: FC<TCardProps> = ({ title, description, linkImage, alt, price }) => {
     return (
         <Styled.WrapperCard>
-            <Typography variant="h5" color="initial">
-                CSS Gradient is a happy little website and free tool that lets you create a gradient background for
-                websites.
+            <Typography variant="h5" color="primary">
+                {title}
             </Typography>
-            <Styled.imageCard src={linkImage} alt={alt} width={300} height={300} />
+            <Styled.WrapperImage>
+                <Styled.imageCard src={linkImage} alt={alt} />
+            </Styled.WrapperImage>
+            <Styled.WrapperDescription>
+                <Typography variant="body2" color="initial">
+                    {description}
+                </Typography>
+                <Button>{price ? price + ' ₽' : 'Нет в наличии'}</Button>
+            </Styled.WrapperDescription>
         </Styled.WrapperCard>
     )
 }

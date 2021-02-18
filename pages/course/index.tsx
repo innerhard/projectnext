@@ -1,28 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { LayoutPage, Lesson } from '@components'
-import axios from 'axios'
+import { queryAPI } from '../../src/api'
 
 const Course = () => {
     const [data, setData] = useState<null>(null)
     const [hasError, setError] = useState<boolean>(false)
 
     useEffect(() => {
-        axios
-            .get('http://localhost:4200/data')
-            .then(({ data, status }) => {
-                console.log('FUCK', data)
-
-                if (status === 200) {
-                    console.log('FUCK', data)
-                    setData(data)
-                } else {
-                    setError(true)
-                }
-            })
-            .catch(() => {
-                setError(true)
-            })
+        queryAPI('http://localhost:1337/menus', setData, setError)
     }, [])
+
     if (hasError) {
         return <div>ERROR</div>
     }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 
 export default function MyApp({ Component, pageProps }) {
     return (
