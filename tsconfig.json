@@ -26,6 +26,7 @@
         "paths": {
             "@components": ["components"],
             "@api": ["api"],
+            "@store": ["store"],
             "@types/*": ["types/*"],
             "@theme": ["theme"],
             "@utils/*": ["utils/*"],
