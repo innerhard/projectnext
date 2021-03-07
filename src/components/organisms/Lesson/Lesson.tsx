@@ -11,16 +11,10 @@ export function Lesson() {
     useEffect(() => {
         queryAPI('http://localhost:1337/products', setData, setError)
     }, [])
-    const content = data?.map(({ id, Description, Product_Name, Price }) => {
+    const content = data?.map(({ id, description, productName, price, link }) => {
         return (
             <Styled.WrapperCard key={id}>
-                <Card
-                    description={Description}
-                    title={Product_Name}
-                    price={Price}
-                    linkImage={'https://upload.wikimedia.org/wikipedia/commons/9/9d/Tomato.png'}
-                    alt="Test"
-                />
+                <Card id={id} description={description} title={productName} price={price} linkImage={link} alt="Test" />
             </Styled.WrapperCard>
         )
     })
