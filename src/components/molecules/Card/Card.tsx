@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import { Styled } from './styled'
-import { Typography, Button } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { useNotesStore } from '@store'
+import { Styled } from './styled'
 
 type TCardProps = {
     id: number
@@ -17,9 +17,11 @@ export const Card: FC<TCardProps> = ({ id, title, description, linkImage, alt, p
 
     return (
         <Styled.WrapperCard key={id}>
-            <Typography variant="h5" color="primary">
-                {title}
-            </Typography>
+            <Styled.WrapperCardTitle>
+                <Typography variant="h5" color="primary">
+                    {title}
+                </Typography>
+            </Styled.WrapperCardTitle>
             <Styled.WrapperImage>
                 <Styled.imageCard src={linkImage} alt={alt} />
             </Styled.WrapperImage>
@@ -27,14 +29,17 @@ export const Card: FC<TCardProps> = ({ id, title, description, linkImage, alt, p
                 <Typography variant="body2" color="initial">
                     {description}
                 </Typography>
-                <Button
+            </Styled.WrapperDescription>
+            <Styled.WrapperCardButton>
+                <Styled.CardButton
                     onClick={() =>
-                        notesStore.addNotes(`${title}`, `${description}`, `${title}`, `${price}`, `${linkImage}`)
+                        price &&
+                        notesStore?.addNotes(`${title}`, `${description}`, `${title}`, `${price}`, `${linkImage}`)
                     }
                 >
-                    {price ? price + ' ₽' : 'Нет в наличии'}
-                </Button>
-            </Styled.WrapperDescription>
+                    {price ? `В корзину ${price} ₽` : 'Нет в наличии'}
+                </Styled.CardButton>
+            </Styled.WrapperCardButton>
         </Styled.WrapperCard>
     )
 }
