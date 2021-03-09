@@ -5,11 +5,12 @@ import RemoveIcon from '@material-ui/icons/Remove'
 const WrapperCard = styled('div')`
     grid-column-end: 12 span;
     display: grid;
-    grid-template-columns: 150px 1fr 1fr;
+    grid-template-columns: 150px 1fr max-content;
     grid-template-rows: max-content max-content;
-    height: 150px;
+    min-height: 150px;
     border-radius: ${theme.radius.x24}px;
-    padding: ${theme.padding.x24}px ${theme.padding.x40}px;
+    background: white;
+    padding: ${theme.padding.x16}px ${theme.padding.x24}px;
     overflow: hidden;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `
@@ -34,20 +35,17 @@ const WrapperImage = styled.div`
     background: white;
     height: 150px;
 `
-const imageCard = styled.img`
-    height: 150px;
+const WrapperTitle = styled.div`
+    grid-column: 1/4;
 `
-const WrapperDescription = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 30px;
+const imageCard = styled.img`
     height: 150px;
 `
 
 export const Styled = {
     WrapperCard,
+    WrapperTitle,
     CloseIcon,
-    WrapperDescription,
     WrapperImage,
     imageCard,
 }

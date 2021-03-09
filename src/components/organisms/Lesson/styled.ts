@@ -4,6 +4,7 @@ import { theme } from '@theme'
 const WrapperContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    background: #f7fbfb;
     grid-template-rows: max-content;
     grid-column-gap: 16px;
     grid-row-gap: 100px;
