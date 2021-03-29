@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { Button } from '@material-ui/core'
+import { theme } from '../../../theme'
 
 const WrapperContainer = styled.div`
     display: grid;
@@ -9,7 +11,17 @@ const WrapperContainer = styled.div`
     padding: 32px;
     transition-duration: 0.2s;
 `
+const ButtonBack = styled(Button)`
+    background: ${theme.linearGradient.megaOrange};
+    padding: 6px 8px;
+`
+const WrapperButton = styled.div`
+    margin-bottom: 24px;
+    height: 48px;
+`
 
 export const Styled = {
     WrapperContainer,
+    WrapperButton,
+    ButtonBack,
 }

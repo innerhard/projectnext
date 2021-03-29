@@ -30,6 +30,15 @@ export const queryAPI = (
         }
     })
 }
+export const putDeliver = (link: string, object: {}) => {
+    getAPI.then(item => {
+        if (item.status === 200) {
+            axios.post(link, {
+                deliver: object,
+            })
+        }
+    })
+}
 
 export const queryAPIStatic = (link: string) => {
     getAPI.then(item => {

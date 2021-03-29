@@ -3,11 +3,11 @@ import styled from 'styled-components'
 const DrawerMenu = styled.div`
     position: fixed;
     display: grid;
-    grid-template-rows: 70px max-content max-content max-content;
+    grid-template-rows: 100px max-content max-content max-content;
     grid-row-gap: 48px;
     justify-items: start;
     grid-template-rows: max-content;
-    width: 230px;
+    width: 150px;
     background-color: white;
 `
 const WrapperItems = styled.div`
@@ -45,11 +45,11 @@ const UnDecoration = styled.a`
 const WrapperLogo = styled.div`
     display: flex;
     place-self: center;
-    height: 70px;
+    height: 100px;
 `
 const SVGWrapper = styled.div`
-    height: 70px;
-    width: 70px;
+    height: 100px;
+    width: 150px;
 `
 export const Styled = {
     DrawerMenu,
