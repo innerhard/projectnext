@@ -1,7 +1,8 @@
 import React, { FC, useReducer } from 'react'
 import Link from 'next/link'
-import { AppBar, Toolbar, Button, Typography, IconButton } from '@material-ui/core'
+import { AppBar, Toolbar, Button, Typography, IconButton, InputBase } from '@material-ui/core'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import SearchIcon from '@material-ui/icons/Search'
 import { TNavigation } from '../../../types'
 import { Skeleton } from '@material-ui/lab'
 import { theme } from '@theme'
@@ -12,7 +13,6 @@ import { useObserver } from 'mobx-react'
 
 export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
     const noteStore = useNotesStore()
-
     const menuItems = data?.map(item => {
         const { id, href, description } = item
         return (
@@ -34,7 +34,13 @@ export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
                             </>
                         )}
                     </Typography>
-                    <CustomIcon gradient={theme.linearGradient.cucumberWater}>
+                    <CustomIcon
+                        gradient={theme.linearGradient.cucumberWater}
+                        isActive={noteStore?.filter.cat}
+                        handler={noteStore?.getFilterType}
+                        type="cat"
+                        name="cat"
+                    >
                         <svg
                             width="40"
                             height="30"
@@ -57,7 +63,13 @@ export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
                             />
                         </svg>
                     </CustomIcon>
-                    <CustomIcon gradient={theme.linearGradient.cucumberWater}>
+                    <CustomIcon
+                        gradient={theme.linearGradient.cucumberWater}
+                        isActive={noteStore?.filter?.dog}
+                        handler={noteStore?.getFilterType}
+                        type="dog"
+                        name="dog"
+                    >
                         <svg
                             width="40"
                             height="30"
@@ -92,6 +104,10 @@ export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
                             </Styled.BadgeStyle>
                         </IconButton>
                     </Link>
+                    <Styled.WrapperSearch>
+                        <SearchIcon />
+                        <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
+                    </Styled.WrapperSearch>
                 </Toolbar>
             </AppBar>
         )

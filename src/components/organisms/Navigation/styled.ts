@@ -16,9 +16,18 @@ const WrapperCard = styled.div`
 const BadgeStyle = styled(Badge)`
     color: black;
 `
+const WrapperSearch = styled.div`
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    margin: 16px 16px 16px;
+    align-items: center;
+    border-radius: 4px;
+    border: 2px solid black;
+`
 
 export const Styled = {
     WrapperContainer,
+    WrapperSearch,
     BadgeStyle,
     WrapperCard,
 }

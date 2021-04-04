@@ -59,7 +59,9 @@ export const Basket = () => {
 
     return (
         <Styled.WrapperContainer>
-            <Styled.WrapperMessage>{!status ? basketContent : <DeliveryForm />}</Styled.WrapperMessage>
+            <Styled.WrapperMessage>
+                {!status ? basketContent : <DeliveryForm setStatus={setStatus} />}
+            </Styled.WrapperMessage>
         </Styled.WrapperContainer>
     )
 }
