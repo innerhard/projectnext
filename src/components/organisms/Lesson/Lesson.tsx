@@ -63,6 +63,20 @@ export function Lesson() {
                     </Styled.WrapperCard>
                 )
             }
+            if(noteStore?.filter.[type] && noteStore?.filter.cat && noteStore?.filter.dog) {
+                return (
+                    <Styled.WrapperCard key={id}>
+                        <Card
+                            id={id}
+                            description={description}
+                            title={productName}
+                            price={price}
+                            linkImage={link}
+                            alt="Test"
+                        />
+                    </Styled.WrapperCard>
+                )
+            }
             if(noteStore?.filter.[type] && (!noteStore?.filter.cat || !noteStore?.filter.dog)) {
                 return (
                     <Styled.WrapperCard key={id}>

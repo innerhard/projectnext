@@ -4,6 +4,11 @@ import { theme } from '@theme'
 type TGradient = {
     gradient?: string
 }
+const WrapperContent = styled.div`
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+`
 const WrapperIcon = styled.div<TGradient>`
     display: flex;
     place-items: center;
@@ -12,9 +17,9 @@ const WrapperIcon = styled.div<TGradient>`
     margin: 0 ${theme.padding.x8}px;
     height: 40px;
     padding: ${theme.padding.x8}px;
-    cursor: pointer;
 `
 
 export const Styled = {
+    WrapperContent,
     WrapperIcon,
 }
