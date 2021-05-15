@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
+import { Typography } from '@material-ui/core'
 import { Styled } from './styled'
 
 type TCardProps = {
@@ -7,9 +8,10 @@ type TCardProps = {
     handler: (arg: boolean, type: 'feed' | 'toys' | 'clothes' | 'medications' | 'cat' | 'dog') => {}
     name: string
     type: 'feed' | 'toys' | 'clothes' | 'medications' | 'cat' | 'dog'
+    text?: string
 }
 
-export const CustomIcon: FC<TCardProps> = ({ gradient, name, type, isActive = false, handler, children }) => {
+export const CustomIcon: FC<TCardProps> = ({ gradient, name, type, isActive = false, handler, text, children }) => {
     const [grd, setGradient] = useState(isActive)
 
     useEffect(() => {
@@ -17,14 +19,14 @@ export const CustomIcon: FC<TCardProps> = ({ gradient, name, type, isActive = fa
     }, [grd])
 
     return (
-        <Styled.WrapperIcon
-            gradient={grd ? gradient : 'none'}
+        <Styled.WrapperContent
             onClick={() => {
                 setGradient(!grd)
                 handler(isActive, type)
             }}
         >
-            {children}
-        </Styled.WrapperIcon>
+            <Styled.WrapperIcon gradient={grd ? gradient : 'none'}>{children}</Styled.WrapperIcon>
+            {text && <Typography>{text}</Typography>}
+        </Styled.WrapperContent>
     )
 }

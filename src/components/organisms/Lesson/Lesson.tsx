@@ -17,15 +17,39 @@ export function Lesson() {
     }, [])
 
     return useObserver(() => {
-        const content = data?.map(({ id, description, productName, price, link, cat, dog, type }) => {
-            if (
-                (noteStore?.filter.cat && noteStore?.filter.cat === cat) ||
-                noteStore?.filter.dog === dog ||
-                (noteStore?.filter.feed && type === 'feed') ||
-                (noteStore?.filter.clothes && type === 'clothes') ||
-                (noteStore?.filter.toys && type === 'toys') ||
-                (noteStore?.filter.medications && type === 'medications')
-            ) {
+        let filterData = data
+
+        if (filterData && noteStore?.filter.cat & !noteStore?.filter.dog) {
+            filterData = filterData.filter(item => {
+                return item.cat === true
+            })
+        }
+
+        if ( filterData && !noteStore?.filter.cat & noteStore?.filter.dog) {
+            filterData = filterData.filter(item => {
+                return item.dog === true
+            })
+        }
+
+        const content = filterData?.map(({ id, description, productName, price, link, type }) => {
+
+            if(!noteStore?.filter.feed &&
+                !noteStore?.filter.clothes &&
+                !noteStore?.filter.medications &&
+                !noteStore?.filter.toys)
+            { return <Styled.WrapperCard key={id}>
+                <Card
+                    id={id}
+                    description={description}
+                    title={productName}
+                    price={price}
+                    linkImage={link}
+                    alt="Test"
+                />
+            </Styled.WrapperCard>
+            }
+
+            if(noteStore?.filter.[type] && !noteStore?.filter.cat && !noteStore?.filter.dog) {
                 return (
                     <Styled.WrapperCard key={id}>
                         <Card
@@ -39,15 +63,21 @@ export function Lesson() {
                     </Styled.WrapperCard>
                 )
             }
-
-            if (
-                !noteStore?.filter.cat &&
-                !noteStore?.filter.dog &&
-                !noteStore?.filter.feed &&
-                !noteStore?.filter.clothes &&
-                !noteStore?.filter.toys &&
-                !noteStore?.filter.medications
-            ) {
+            if(noteStore?.filter.[type] && noteStore?.filter.cat && noteStore?.filter.dog) {
+                return (
+                    <Styled.WrapperCard key={id}>
+                        <Card
+                            id={id}
+                            description={description}
+                            title={productName}
+                            price={price}
+                            linkImage={link}
+                            alt="Test"
+                        />
+                    </Styled.WrapperCard>
+                )
+            }
+            if(noteStore?.filter.[type] && (!noteStore?.filter.cat || !noteStore?.filter.dog)) {
                 return (
                     <Styled.WrapperCard key={id}>
                         <Card
@@ -62,6 +92,6 @@ export function Lesson() {
                 )
             }
         })
-        return <Styled.WrapperContainer>{data ? content : <CircularProgress />}</Styled.WrapperContainer>
+        return <Styled.WrapperContainer>{filterData ? content : <CircularProgress />}</Styled.WrapperContainer>
     })
 }
