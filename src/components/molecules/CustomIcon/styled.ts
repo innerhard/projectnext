@@ -11,11 +11,13 @@ const WrapperContent = styled.div`
 `
 const WrapperIcon = styled.div<TGradient>`
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
     background: ${({ gradient = 'none' }) => gradient};
     border-radius: 50%;
     margin: 0 ${theme.padding.x8}px;
     height: 40px;
+    width: 40px;
     padding: ${theme.padding.x8}px;
 `
 
