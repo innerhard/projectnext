@@ -1,10 +1,8 @@
 import React, { FC } from 'react'
 import { Styled } from './styled'
-import { SvgIcon, Typography } from '@material-ui/core'
+import { Cat, Dog, Eat, Clothes, Pills, Toys } from '@icons'
 import Link from 'next/link'
-import { Button } from '../../molecules/Button'
 import { CustomIcon } from '../../molecules/CustomIcon'
-import { SpecialOffer } from '../../molecules/SpecialOffer'
 import { theme } from '@theme'
 import { useObserver } from 'mobx-react'
 import { useNotesStore } from '@store'
@@ -20,40 +18,28 @@ type TDataMenu = {
 const dataMenu: TDataMenu = [
     {
         id: 1,
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 128 128">
-                <g>
-                    <path d="M123.681,21.191a16.994,16.994,0,0,0-11.308-5.564,16.992,16.992,0,0,0-5.564-11.308A17.123,17.123,0,0,0,84,4.39,16.918,16.918,0,0,0,79.121,21.7a12.1,12.1,0,0,1-2.853,11.96L33.656,76.268A12.094,12.094,0,0,1,21.7,79.121,16.916,16.916,0,0,0,4.39,84a17.121,17.121,0,0,0-.071,22.808,16.985,16.985,0,0,0,11.308,5.564A16.989,16.989,0,1,0,48.879,106.3a12.1,12.1,0,0,1,2.853-11.96L94.344,51.732a12.1,12.1,0,0,1,11.961-2.853A16.914,16.914,0,0,0,123.61,44,17.123,17.123,0,0,0,123.681,21.191Zm-2.657,20.45a13.441,13.441,0,0,1-13.747,3.876,15.6,15.6,0,0,0-15.408,3.741L49.258,91.87a15.591,15.591,0,0,0-3.741,15.408,13.437,13.437,0,0,1-3.877,13.747,13.481,13.481,0,0,1-22.56-10.312,1.752,1.752,0,0,0-1.75-1.793h-.043a13.443,13.443,0,0,1-10.368-4.455A13.591,13.591,0,0,1,6.975,86.36a13.436,13.436,0,0,1,13.747-3.877A15.588,15.588,0,0,0,36.13,78.742L78.742,36.13a15.59,15.59,0,0,0,3.74-15.408A13.441,13.441,0,0,1,86.359,6.975a13.483,13.483,0,0,1,22.562,10.312,1.746,1.746,0,0,0,.512,1.28,1.764,1.764,0,0,0,1.28.513,13.481,13.481,0,0,1,10.311,22.561Z" />
-                    <path d="M113.63,27.9a1.75,1.75,0,0,0-.128,2.472,3.384,3.384,0,0,1-.013,4.393,3.33,3.33,0,0,1-3.373.955,1.75,1.75,0,0,0-.972,3.362,6.9,6.9,0,0,0,1.907.265,6.7,6.7,0,0,0,5.023-2.222,6.917,6.917,0,0,0,.028-9.1A1.751,1.751,0,0,0,113.63,27.9Z" />
-                </g>
-            </svg>
-        ),
+        icon: <Eat width="30" height="30" />,
         label: 'Корма',
         link: '#',
         type: 'feed',
     },
     {
         id: 2,
-        icon: '',
+        icon: <Clothes width="30" height="30" />,
         label: 'Одежда',
         link: '#',
         type: 'clothes',
     },
     {
         id: 3,
-        icon: (
-            <svg height="42" viewBox="0 0 128 128" width="42" xmlns="http://www.w3.org/2000/svg">
-                <path d="m245.652344 234.175781c-56.222656-56.167969-147.328125-56.136719-203.511719.066407-56.1875 56.207031-56.1875 147.3125 0 203.515624 56.183594 56.203126 147.289063 56.234376 203.511719.066407 56.140625-56.273438 56.140625-147.371094 0-203.648438zm-192.335938 11.3125c47.78125-47.75 124.460938-50.101562 175.082032-5.371093l-180.449219 180.449218c-44.640625-50.652344-42.289063-127.257812 5.367187-175.078125zm181.023438 181.023438c-47.820313 47.65625-124.425782 50.007812-175.078125 5.371093l180.449219-180.449218c44.636718 50.652344 42.289062 127.257812-5.371094 175.078125zm0 0" />
-                <path d="m351.828125 0c-70.660156.0820312-127.917969 57.339844-128 128v64h16v-64c0-61.855469 50.144531-112 112-112s112 50.144531 112 112v104h-184v16h184v104c0 44.167969-25.957031 84.210938-66.273437 102.242188-40.320313 18.03125-87.46875 10.683593-120.390626-18.761719l-10.671874 11.921875c37.625 33.652344 91.511718 42.054687 137.589843 21.445312 46.082031-20.605468 75.746094-66.371094 75.746094-116.847656v-224c-.082031-70.660156-57.339844-127.9179688-128-128zm0 0" />
-            </svg>
-        ),
+        icon: <Pills width="30" height="30" />,
         label: 'Лекарства',
         link: '#',
         type: 'medications',
     },
     {
         id: 4,
-        icon: '',
+        icon: <Toys width="30" height="30" />,
         label: 'Игрушки',
         link: '#',
         type: 'toys',
@@ -64,9 +50,31 @@ export const DrawerMenu: FC = () => {
     return useObserver(() => {
         return (
             <Styled.DrawerMenu>
-                <Styled.WrapperLogo>
-                    <Styled.SVGWrapper></Styled.SVGWrapper>
-                </Styled.WrapperLogo>
+                <Link passHref={true} href="/">
+                    <Styled.WrapperLogo>
+                        <Styled.HeadingLogo>REDCAT.RU</Styled.HeadingLogo>
+                    </Styled.WrapperLogo>
+                </Link>
+                <Styled.WrapperAnimalIcon>
+                    <CustomIcon
+                        gradient={theme.linearGradient.cucumberWater}
+                        isActive={noteStore?.filter.cat}
+                        handler={noteStore?.getFilterType}
+                        type="cat"
+                        name="cat"
+                    >
+                        <Cat width="40" height="30" />
+                    </CustomIcon>
+                    <CustomIcon
+                        gradient={theme.linearGradient.cucumberWater}
+                        isActive={noteStore?.filter?.dog}
+                        handler={noteStore?.getFilterType}
+                        type="dog"
+                        name="dog"
+                    >
+                        <Dog width="40" height="30" />
+                    </CustomIcon>
+                </Styled.WrapperAnimalIcon>
                 <Styled.WrapperItems>
                     {dataMenu.map(({ label, icon, type, gradient }) => (
                         <CustomIcon
@@ -81,9 +89,9 @@ export const DrawerMenu: FC = () => {
                         </CustomIcon>
                     ))}
                 </Styled.WrapperItems>
-                <Styled.Wrapper>
-                    <SpecialOffer description="Попробуй мобильное приложение" link="#" />
-                </Styled.Wrapper>
+                {/*<Styled.Wrapper>*/}
+                {/*    <SpecialOffer description="Попробуй мобильное приложение" link="#" />*/}
+                {/*</Styled.Wrapper>*/}
             </Styled.DrawerMenu>
         )
     })

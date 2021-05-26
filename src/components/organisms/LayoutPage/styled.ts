@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const DrawerMenuWrapper = styled.div`
     position: fixed;
-    width: 150px;
+    width: 200px;
     min-height: 100vw;
 `
 const DrawerMenu = styled.div`
@@ -10,13 +10,13 @@ const DrawerMenu = styled.div`
     display: grid;
     justify-items: center;
     grid-template-rows: max-content;
-    width: 150px;
+    width: 200px;
     background-color: white;
 `
 const PageWrapper = styled.div`
     min-height: 100vw;
     display: grid;
-    grid-template-columns: 190px 1fr;
+    grid-template-columns: 200px 1fr;
     grid-template-rows: 70px 1fr;
 `
 const WrapperContent = styled.div`

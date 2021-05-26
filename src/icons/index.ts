@@ -1,0 +1,6 @@
+export { Cat } from './Cat'
+export { Dog } from './Dog'
+export { Eat } from './Eat'
+export { Clothes } from './Clothes'
+export { Pills } from './Pills'
+export { Toys } from './Toys'
