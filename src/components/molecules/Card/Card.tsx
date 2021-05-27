@@ -22,7 +22,7 @@ export const Card: FC<TCardProps> = ({ id, title, description, linkImage, alt, p
                     {title}
                 </Typography>
             </Styled.WrapperCardTitle>
-            <Styled.WrapperImage>
+            <Styled.WrapperImage href={`/course/${id}`}>
                 <Styled.imageCard src={linkImage} alt={alt} />
             </Styled.WrapperImage>
             <Styled.WrapperDescription>
@@ -34,7 +34,15 @@ export const Card: FC<TCardProps> = ({ id, title, description, linkImage, alt, p
                 <Styled.CardButton
                     onClick={() =>
                         price &&
-                        notesStore?.addNotes(`${title}`, `${description}`, `${title}`, `${price}`, `${linkImage}`)
+                        notesStore?.addNotes(
+                            `${title}`,
+                            `${description}`,
+                            `${title}`,
+                            `${price}`,
+                            1,
+                            `${linkImage}`,
+                            `${id}`,
+                        )
                     }
                 >
                     {price ? `В корзину ${price} ₽` : 'Нет в наличии'}

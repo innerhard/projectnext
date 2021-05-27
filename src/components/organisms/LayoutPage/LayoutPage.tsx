@@ -1,12 +1,20 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Navigation, DrawerMenu } from '@components'
 import { Styled } from './styled'
+import { queryAPI } from '@api'
 
-type TLayoutPage = {
-    json?: any
-}
-export const LayoutPage: FC<TLayoutPage> = ({ json, children }) => {
+export const LayoutPage: FC = ({ children }) => {
     const [count, setCount] = useState(0)
+    const [data, setData] = useState<null>(null)
+    const [hasError, setError] = useState<boolean>(false)
+
+    useEffect(() => {
+        queryAPI('http://localhost:1337/menus', setData, setError)
+    }, [])
+
+    if (hasError) {
+        return <div>ERROR</div>
+    }
 
     return (
         <>
@@ -14,7 +22,7 @@ export const LayoutPage: FC<TLayoutPage> = ({ json, children }) => {
                 <Styled.DrawerMenuWrapper>
                     <DrawerMenu />
                 </Styled.DrawerMenuWrapper>
-                <Navigation data={json} backet={count} handlerBacket={setCount} />
+                {<Navigation data={data} backet={count} handlerBacket={setCount} />}
                 <Styled.WrapperContent>{children}</Styled.WrapperContent>
             </Styled.PageWrapper>
         </>

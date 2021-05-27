@@ -3,22 +3,24 @@ import { queryAPI } from '@api'
 import { Styled } from './styled'
 import { Card } from '@components'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Chip from '@material-ui/core/Chip';
 import { useNotesStore } from '@store'
 import { useObserver } from 'mobx-react'
 
+
 export function Lesson() {
+    const [typeSort, setSort] = useState('asc')
     const [data, setData] = useState<null>(null)
     const [hasError, setError] = useState<boolean>(false)
 
     const noteStore = useNotesStore()
 
     useEffect(() => {
-        queryAPI('http://localhost:1337/products', setData, setError)
-    }, [])
+        queryAPI(`http://localhost:1337/products?_sort=price:${typeSort}`, setData, setError)
+    }, [typeSort])
 
     return useObserver(() => {
         let filterData = data
-
         if (filterData && noteStore?.filter.cat & !noteStore?.filter.dog) {
             filterData = filterData.filter(item => {
                 return item.cat === true
@@ -92,6 +94,15 @@ export function Lesson() {
                 )
             }
         })
-        return <Styled.WrapperContainer>{filterData ? content : <CircularProgress />}</Styled.WrapperContainer>
+        return(
+         <Styled.WrapperContainer>
+            <Styled.WrapperFilter>
+            <Chip label="asc" variant="outlined" onClick={()=> setSort('asc')}/>
+            <Chip label="desc" variant="outlined" onClick={()=> setSort('DESC')}/>
+            </Styled.WrapperFilter>
+            {filterData ? content : <CircularProgress />}
+        </Styled.WrapperContainer>
+        )
+
     })
 }

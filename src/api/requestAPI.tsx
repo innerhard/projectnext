@@ -1,5 +1,6 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useState } from 'react'
+import { date } from 'yup'
 
 export const getAPI = axios.post('http://localhost:1337/auth/local', {
     identifier: 'innerhard@gmail.com',
@@ -30,6 +31,19 @@ export const queryAPI = (
         }
     })
 }
+
+export const queryStaticData = async (link: string) => {
+    return getAPI.then(item => {
+        if (item.status === 200) {
+            return axios
+                .get(link, {
+                    headers: { Authorization: `Bearer ${item.data?.jwt}` },
+                })
+                .then(response => response.data)
+        }
+    })
+}
+
 export const putDeliver = (link: string, object: {}) => {
     getAPI.then(item => {
         if (item.status === 200) {
