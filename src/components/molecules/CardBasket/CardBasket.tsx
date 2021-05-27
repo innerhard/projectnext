@@ -10,10 +10,11 @@ type TCardProps = {
     alt: string
     title?: string
     description?: string
+    count?: number
     price?: string
 }
 
-export const CardBasket: FC<TCardProps> = ({ id, title, description, linkImage, alt, price }) => {
+export const CardBasket: FC<TCardProps> = ({ id, title, description, count, linkImage, alt, price }) => {
     const notesStore = useNotesStore()
     const [visible, setVisible] = useState(true)
     const transitionStyles = {
@@ -36,10 +37,12 @@ export const CardBasket: FC<TCardProps> = ({ id, title, description, linkImage, 
                     </Styled.WrapperImage>
                     <Typography variant="body2" color="primary">
                         {description}
+
+                        <Typography variant="body2" color="primary">
+                            {count}
+                        </Typography>
                     </Typography>
-                    <Typography variant="h6">
-                        {price} ₽
-                    </Typography>
+                    <Typography variant="h6">{price * count} ₽</Typography>
                     <Styled.CloseIcon
                         onClick={() => {
                             setVisible(false)

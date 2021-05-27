@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { theme } from '@theme'
 import { Button } from '@material-ui/core'
 
-const WrapperCard = styled('div')`
+const WrapperCard = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: max-content;
@@ -14,7 +14,7 @@ const WrapperCard = styled('div')`
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `
 
-const WrapperImage = styled.div`
+const WrapperImage = styled.a`
     display: grid;
     grid-template-rows: max-content;
     background: white;

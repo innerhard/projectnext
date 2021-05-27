@@ -17,14 +17,23 @@ export const Basket = () => {
 
         return sum
     }
+    const totalCol = () => {
+        let sum = 0
+        noteStore?.notes?.map(({ count }) => {
+            sum += count
+        })
+
+        return sum
+    }
 
     const content = useObserver(() =>
-        noteStore?.notes?.map(({ id, description, productName, price, link }) => {
+        noteStore?.notes?.map(({ id, description, count, productName, price, link }) => {
             return (
                 <CardBasket
                     id={id}
                     key={id}
                     description={description}
+                    count={count}
                     title={productName}
                     price={price}
                     linkImage={link}
@@ -44,7 +53,7 @@ export const Basket = () => {
                     </div>
                     <div>
                         <Typography>Всего товаров</Typography>
-                        <Typography>{content.length}</Typography>
+                        <Typography>{totalCol()}</Typography>
                     </div>
                     <Styled.WrapperButton>
                         <Styled.ButtonDelivery onClick={() => setStatus(true)}>Доставить</Styled.ButtonDelivery>

@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
-import { queryAPI } from '../src/api'
+import React, { FC } from 'react'
 import { LayoutPage } from '../src/components/organisms/'
 import { CarouselBlock } from '../src/components/molecules/Carousel'
 
@@ -95,18 +94,8 @@ const dataCarousel = [
     },
 ]
 const Course: FC = () => {
-    const [data, setData] = useState<null>(null)
-    const [hasError, setError] = useState<boolean>(false)
-
-    useEffect(() => {
-        queryAPI('http://localhost:1337/menus', setData, setError)
-    }, [])
-
-    if (hasError) {
-        return <div>ERROR</div>
-    }
     return (
-        <LayoutPage json={data}>
+        <LayoutPage>
             <CarouselBlock data={dataCarousel} />
         </LayoutPage>
     )

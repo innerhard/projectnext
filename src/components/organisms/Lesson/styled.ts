@@ -5,12 +5,17 @@ const WrapperContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     background: #f7fbfb;
-    grid-template-rows: max-content;
+    grid-template-rows: min-content;
     grid-column-gap: 16px;
-    grid-row-gap: 100px;
+    grid-row-gap: 48px;
     padding: 32px;
 `
+const WrapperFilter = styled.div`
+    display: flex;
+    grid-column-end: 12 span;
+`
 const WrapperCard = styled.div`
+    height: fit-content;
     grid-column-end: 12 span;
 
     @media (min-width: ${theme.breakpoint.desktopSm}px) {
@@ -23,5 +28,6 @@ const WrapperCard = styled.div`
 
 export const Styled = {
     WrapperContainer,
+    WrapperFilter,
     WrapperCard,
 }
