@@ -1,7 +1,4 @@
-import { nanoid } from 'nanoid'
-
 export const createNotesStore = () => {
-    const clearState = { feed: false, clothes: false, medications: false, toys: false }
     return {
         filter: {
             cat: false,
@@ -12,7 +9,7 @@ export const createNotesStore = () => {
             toys: false,
         },
         notes: [],
-        addNotes(text, description, productName, price, count, link, id) {
+        addNotes(text, description, productName, price, count, link, id){
             const element = this.notes.indexOf(
                 this.notes.filter(item => {
                     return item.id === id

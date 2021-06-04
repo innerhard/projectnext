@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { LayoutPage } from '@components'
+import { LayoutPage, ProductInfo } from '@components'
 import { queryStaticData } from '../../src/api'
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -27,11 +27,14 @@ export const getStaticProps: GetStaticProps = async ctx => {
 }
 
 const Post = ({ param }) => {
-    return (
-        <LayoutPage>
-            <div>{param}</div>
-        </LayoutPage>
-    )
+    const [data, setData] = useState(null)
+    const [hasError, setError] = useState<boolean>(false)
+
+    useEffect(() => {
+        queryStaticData(`http://localhost:1337/products?id=${param}`).then(response => setData(response))
+    }, [param])
+
+    return <LayoutPage>{data && <ProductInfo {...data[0]} />}</LayoutPage>
 }
 
 export default Post

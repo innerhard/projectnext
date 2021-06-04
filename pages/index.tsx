@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { LayoutPage } from '../src/components/organisms/'
+import { LayoutPage, Lesson } from '../src/components/organisms/'
 import { CarouselBlock } from '../src/components/molecules/Carousel'
 
 const dataCarousel = [
@@ -97,6 +97,7 @@ const Course: FC = () => {
     return (
         <LayoutPage>
             <CarouselBlock data={dataCarousel} />
+            <Lesson />
         </LayoutPage>
     )
 }

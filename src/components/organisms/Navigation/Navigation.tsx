@@ -45,7 +45,7 @@ export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
                         <SearchIcon />
                         <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
                     </Styled.WrapperSearch>
-                    <Link href="basket">
+                    <Link href="/basket">
                         <IconButton aria-label="cart">
                             <Styled.BadgeStyle
                                 /* @ts-ignore */
