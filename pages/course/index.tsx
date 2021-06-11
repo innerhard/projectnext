@@ -1,6 +1,7 @@
 import React from 'react'
 import { LayoutPage, Lesson } from '@components'
 
+
 const Course = () => {
     return (
         <LayoutPage>

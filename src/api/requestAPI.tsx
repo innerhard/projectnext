@@ -1,6 +1,7 @@
+//@ts-nocheck
+import React from 'react'
 import axios from 'axios'
-import React, { useState } from 'react'
-import { date } from 'yup'
+
 
 export const getAPI = axios.post('http://localhost:1337/auth/local', {
     identifier: 'innerhard@gmail.com',
@@ -16,7 +17,7 @@ export const queryAPI = (
         if (item.status === 200) {
             axios
                 .get(link, {
-                    headers: { Authorization: `Bearer ${item.data?.jwt}` },
+                    headers: { Authorization: `Bearer ${item.data.jwt}` },
                 })
                 .then(({ data, status }) => {
                     if (status === 200) {
@@ -35,9 +36,10 @@ export const queryAPI = (
 export const queryStaticData = async (link: string) => {
     return getAPI.then(item => {
         if (item.status === 200) {
+            console.log('2')
             return axios
                 .get(link, {
-                    headers: { Authorization: `Bearer ${item.data?.jwt}` },
+                    headers: { Authorization: `Bearer ${item.data.jwt}` },
                 })
                 .then(response => response.data)
         }
@@ -45,9 +47,9 @@ export const queryStaticData = async (link: string) => {
 }
 
 export const putDeliver = (link: string, object: {}) => {
-    getAPI.then(item => {
+    return getAPI.then(item => {
         if (item.status === 200) {
-            axios.post(link, {
+            return axios.post(link, {
                 deliver: object,
             })
         }
@@ -55,10 +57,10 @@ export const putDeliver = (link: string, object: {}) => {
 }
 
 export const queryAPIStatic = (link: string) => {
-    getAPI.then(item => {
+    return getAPI.then(item => {
         if (item.status === 200) {
-            axios.get(link, {
-                headers: { Authorization: `Bearer ${item.data?.jwt}` },
+            return axios.get(link, {
+                headers: { Authorization: `Bearer ${item.data.jwt}` },
             })
         }
     })

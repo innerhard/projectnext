@@ -21,7 +21,7 @@ const dataCarousel = [
         price: '12345',
     },
     {
-        id: 2,
+        id: 3,
         title: 'test2',
         description: 'More description',
         link: '#',
@@ -29,7 +29,7 @@ const dataCarousel = [
         price: '12345',
     },
     {
-        id: 2,
+        id: 4,
         title: 'test2',
         description: 'More description',
         link: '#',
@@ -37,7 +37,7 @@ const dataCarousel = [
         price: '12345',
     },
     {
-        id: 2,
+        id: 5,
         title: 'test2',
         description: 'More description',
         link: '#',
@@ -45,7 +45,7 @@ const dataCarousel = [
         price: '12345',
     },
     {
-        id: 2,
+        id: 6,
         title: 'test2',
         description: 'More description',
         link: '#',
@@ -53,7 +53,7 @@ const dataCarousel = [
         price: '12345',
     },
     {
-        id: 2,
+        id: 7,
         title: 'test2',
         description: 'More description',
         link: '#',
@@ -61,7 +61,7 @@ const dataCarousel = [
         price: '12345',
     },
     {
-        id: 2,
+        id: 8,
         title: 'test2',
         description: 'More description',
         link: '#',
@@ -69,7 +69,7 @@ const dataCarousel = [
         price: '12345',
     },
     {
-        id: 2,
+        id: 9,
         title: 'test2',
         description: 'More description',
         link: '#',
@@ -77,7 +77,7 @@ const dataCarousel = [
         price: '12345',
     },
     {
-        id: 2,
+        id: 10,
         title: 'test2',
         description: 'More description',
         link: '#',
@@ -85,7 +85,7 @@ const dataCarousel = [
         price: '12345',
     },
     {
-        id: 2,
+        id: 11,
         title: 'test2',
         description: 'More description',
         link: '#',

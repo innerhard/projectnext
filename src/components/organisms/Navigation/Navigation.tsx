@@ -2,12 +2,13 @@ import React, { FC } from 'react'
 import Link from 'next/link'
 import { AppBar, Toolbar, Button, Typography, IconButton, InputBase } from '@material-ui/core'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import LocalShippingIcon from '@material-ui/icons/LocalShipping'
 import SearchIcon from '@material-ui/icons/Search'
 import { TNavigation } from '../../../types'
 import { Skeleton } from '@material-ui/lab'
 import { Styled } from './styled'
 import { useNotesStore } from '@store'
-import { useObserver } from 'mobx-react'
+import { Observer } from 'mobx-react'
 
 export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
     const noteStore = useNotesStore()
@@ -28,36 +29,54 @@ export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
 
         return sum
     }
-    return useObserver(() => {
-        return (
-            <AppBar position="static" color="inherit" style={{ boxShadow: 'none', gridColumn: 2 }}>
-                <Toolbar>
-                    <Typography variant="h6">
-                        {menuItems ? (
-                            menuItems
-                        ) : (
-                            <>
-                                <Skeleton width={100} height={42} />
-                            </>
-                        )}
-                    </Typography>
-                    <Styled.WrapperSearch>
-                        <SearchIcon />
-                        <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
-                    </Styled.WrapperSearch>
-                    <Link href="/basket">
-                        <IconButton aria-label="cart">
-                            <Styled.BadgeStyle
-                                /* @ts-ignore */
-                                badgeContent={totalCol()}
-                                color="secondary"
-                            >
-                                <ShoppingCartIcon />
-                            </Styled.BadgeStyle>
-                        </IconButton>
-                    </Link>
-                </Toolbar>
-            </AppBar>
-        )
-    })
+    const totalDelivery = () => {
+        return noteStore?.clientInfo?.idClient.length
+    }
+    return (
+        <Observer>
+            {() => {
+                return (
+                    <AppBar position="static" color="inherit" style={{ boxShadow: 'none', gridColumn: 2 }}>
+                        <Toolbar>
+                            <Typography variant="h6">
+                                {menuItems ? (
+                                    menuItems
+                                ) : (
+                                    <>
+                                        <Skeleton width={100} height={42} />
+                                    </>
+                                )}
+                            </Typography>
+                            <Styled.WrapperSearch>
+                                <SearchIcon />
+                                <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
+                            </Styled.WrapperSearch>
+                            <Link href="/basket">
+                                <IconButton aria-label="cart">
+                                    <Styled.BadgeStyle
+                                        /* @ts-ignore */
+                                        badgeContent={totalCol()}
+                                        color="secondary"
+                                    >
+                                        <ShoppingCartIcon />
+                                    </Styled.BadgeStyle>
+                                </IconButton>
+                            </Link>
+                            <Link href="/status">
+                                <IconButton aria-label="cart">
+                                    <Styled.BadgeStyle
+                                        /* @ts-ignore */
+                                        badgeContent={totalDelivery()}
+                                        color="secondary"
+                                    >
+                                        <LocalShippingIcon />
+                                    </Styled.BadgeStyle>
+                                </IconButton>
+                            </Link>
+                        </Toolbar>
+                    </AppBar>
+                )
+            }}
+        </Observer>
+    )
 }

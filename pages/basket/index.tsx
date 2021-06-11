@@ -14,7 +14,7 @@ const Course = () => {
         return <div>ERROR</div>
     }
     return (
-        <LayoutPage json={data}>
+        <LayoutPage>
             <Basket />
         </LayoutPage>
     )

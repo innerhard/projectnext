@@ -9,7 +9,13 @@ export const createNotesStore = () => {
             toys: false,
         },
         notes: [],
-        addNotes(text, description, productName, price, count, link, id){
+        clientInfo: {
+            idClient: [],
+        },
+        addCilentInfo(idClient: string) {
+            this.clientInfo.idClient.push(idClient)
+        },
+        addNotes(text, description, productName, price, count, link, id) {
             const element = this.notes.indexOf(
                 this.notes.filter(item => {
                     return item.id === id
@@ -35,6 +41,9 @@ export const createNotesStore = () => {
         },
         removeNote(id) {
             this.notes = this.notes.filter(note => note.id !== id)
+        },
+        clearNote() {
+            this.notes = []
         },
     }
 }

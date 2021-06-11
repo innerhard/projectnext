@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { Styled } from './styled'
 import { CardBasket, DeliveryForm } from '@components'
 import { useNotesStore } from '@store'
-import { useObserver } from 'mobx-react'
-import { Typography } from '@material-ui/core'
+import { observer } from 'mobx-react'
+import {CircularProgress, Typography} from '@material-ui/core'
 
-export const Basket = () => {
-    const [status, setStatus] = useState(false)
+export const Basket = observer(() => {
+    const [status, setStatus] = useState('basket')
 
     const noteStore = useNotesStore()
     const getTotalSum = () => {
@@ -26,22 +26,20 @@ export const Basket = () => {
         return sum
     }
 
-    const content = useObserver(() =>
-        noteStore?.notes?.map(({ id, description, count, productName, price, link }) => {
-            return (
-                <CardBasket
-                    id={id}
-                    key={id}
-                    description={description}
-                    count={count}
-                    title={productName}
-                    price={price}
-                    linkImage={link}
-                    alt="Test"
-                />
-            )
-        }),
-    )
+    const content = noteStore?.notes?.map(({ id, description, count, productName, price, link }) => {
+        return (
+            <CardBasket
+                id={id}
+                key={id}
+                description={description}
+                count={count}
+                title={productName}
+                price={price}
+                linkImage={link}
+                alt="Test"
+            />
+        )
+    })
 
     const basketContent = (
         <>
@@ -56,7 +54,9 @@ export const Basket = () => {
                         <Typography>{totalCol()}</Typography>
                     </div>
                     <Styled.WrapperButton>
-                        <Styled.ButtonDelivery onClick={() => setStatus(true)}>Доставить</Styled.ButtonDelivery>
+                        <Styled.ButtonDelivery onClick={() => setStatus('deliveryData')}>
+                            Доставить
+                        </Styled.ButtonDelivery>
                     </Styled.WrapperButton>
                 </Styled.WrapperCount>
             ) : (
@@ -69,8 +69,14 @@ export const Basket = () => {
     return (
         <Styled.WrapperContainer>
             <Styled.WrapperMessage>
-                {!status ? basketContent : <DeliveryForm setStatus={setStatus} />}
+                {status === 'basket' && basketContent}
+                {status === 'deliveryData' && <DeliveryForm setStatus={setStatus} />}
+                {status === 'deliveryProgress' && (
+                    <div>
+                        <CircularProgress size={100} />
+                    </div>
+                )}
             </Styled.WrapperMessage>
         </Styled.WrapperContainer>
     )
-}
+})

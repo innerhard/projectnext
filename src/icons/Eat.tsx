@@ -1,10 +1,10 @@
 import React, { FC, SVGProps } from 'react'
 
 export const Eat: FC<SVGProps<SVGSVGElement>> = props => (
-    <svg id="Capa_1" {...props} enable-background="new 0 0 502 502" viewBox="0 0 502 502">
+    <svg id="Capa_1" {...props} enableBackground="new 0 0 502 502" viewBox="0 0 502 502">
         <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="416.421" x2="85.579" y1="346.506" y2="155.494">
-            <stop offset="0" stop-color="#dc8757" />
-            <stop offset="1" stop-color="#efc4ab" />
+            <stop offset="0" stopColor="#dc8757" />
+            <stop offset="1" stopColor="#efc4ab" />
         </linearGradient>
         <g>
             <path

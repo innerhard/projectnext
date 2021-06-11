@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { createNotesStore } from './Store'
-import { useLocalStore } from 'mobx-react'
+import { useLocalObservable } from 'mobx-react'
 
 const NotesContext = React.createContext(null)
 
-export const NotesProvider = ({ children }) => {
-    const notesStore = useLocalStore(createNotesStore)
+export const NotesProvider: FC<React.ReactElement> | null = ({ children }) => {
+    const notesStore = useLocalObservable(createNotesStore)
 
     return <NotesContext.Provider value={notesStore}>{children}</NotesContext.Provider>
 }

@@ -16,8 +16,7 @@ const WrapperCard = styled.div`
 `
 
 const WrapperImage = styled.div`
-    grid-column-end: 2 span;
-    grid-row: 1/2;
+    grid-row: 2/3;
     display: grid;
     grid-template-rows: max-content;
     background: white;
@@ -25,21 +24,22 @@ const WrapperImage = styled.div`
 `
 const imageCard = styled.img`
     justify-self: center;
-    height: 300px;
     width: auto;
 `
 const WrapperDescription = styled.div`
     grid-row: 2/3;
-    grid-column-end: 12 span;
+    grid-column: 2/13;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    height: 50px;
+    grid-auto-rows: min-content;
 `
 const WrapperCardTitle = styled.div`
     display: grid;
+    grid-column: 1/13;
+    align-self: center;
 `
 const WrapperCardButton = styled.div`
+    grid-column: 1/13;
     display: grid;
     padding-top: 8px;
 `

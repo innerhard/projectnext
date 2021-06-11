@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import Button from '@material-ui/core/Button'
@@ -6,7 +7,6 @@ import TextField from '@material-ui/core/TextField'
 import { Styled } from './styled'
 import { useNotesStore } from '@store'
 import { putDeliver } from '@api'
-import axios from 'axios'
 
 const validationSchema = yup.object({
     email: yup
@@ -19,10 +19,11 @@ const validationSchema = yup.object({
 })
 
 type TDelivery = {
-    setStatus: React.SetStateAction<boolean>
+    setStatus: React.SetStateAction<string>
 }
 
 export const DeliveryForm: FC<TDelivery> = ({ setStatus }) => {
+    const router = useRouter()
     const noteStore = useNotesStore()
     const formik = useFormik({
         initialValues: {
@@ -33,18 +34,22 @@ export const DeliveryForm: FC<TDelivery> = ({ setStatus }) => {
         },
         validationSchema: validationSchema,
         onSubmit: values => {
-            alert(JSON.stringify({ ...values, ...{ delivery: noteStore.notes } }, null, 2))
             putDeliver(
                 'http://localhost:1337/deliveries',
                 JSON.stringify({ ...values, ...{ delivery: noteStore.notes } }, null, 2),
-            )
+            ).then(data => {
+                data && noteStore.addCilentInfo(data?.data.id)
+                noteStore?.clearNote()
+                router.push(`/status`)
+            })
+            setStatus('deliveryProgress')
         },
     })
 
     return (
         <div>
             <Styled.WrapperButton>
-                <Styled.ButtonBack onClick={() => setStatus(false)}>Назад</Styled.ButtonBack>
+                <Styled.ButtonBack onClick={() => setStatus('basket')}>Назад</Styled.ButtonBack>
             </Styled.WrapperButton>
 
             <form onSubmit={formik.handleSubmit}>
