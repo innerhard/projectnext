@@ -1,6 +1,8 @@
 //@ts-nocheck
 import { queryStaticData } from './src/api'
 import TelegramApi from 'node-telegram-bot-api'
+import nodeHtmlToImage from 'node-html-to-image'
+import fs from 'fs'
 
 const token = '1805877292:AAF4w2MmrivzN8z4tS8wHUaZ4hHghCVxZ14'
 
@@ -14,17 +16,27 @@ bot.on('message', async (msg: any) => {
         await bot.sendMessage(chatId, `Ты написал мне ${text}`)
     }
 
-    if (text === '300') {
-        await bot.sendMessage(chatId, `Отсоси у тракториста`)
+    if (text === '/300') {
+        await bot.sendMessage(chatId, `Откуси у  прогроммиста`)
     }
 
-    if (text === 'delivery') {
+    if (text === '/delivery') {
         const a = await queryStaticData('http://localhost:1337/deliveries')
-        console.log(a.data)
-        a.map(async item => {
-            return await bot.sendMessage(chatId, `${item.id}${item.deliver}`)
+        const result = a.map(item => {
+            return `<div>${item.id}${item.deliver}</div>`
+        })
+
+        nodeHtmlToImage({
+            output: './image.jpg',
+            html: `<html><body style="width:1024px; height: 768px;"><div style="display:grid; grid-template-columns: repeat(12, 1fr)">${result}</div></body></html>`,
+        }).then(async () => {
+            console.log('The image was created successfully!')
+
+
+            await bot.sendPhoto(chatId, `image.jpg`)
         })
     }
 })
+
 console.table([1, 2, 3, 4, 5, 6])
 export {}

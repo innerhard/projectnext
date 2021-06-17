@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useNotesStore } from '@store'
-import { LayoutPage } from '@components'
+import { LayoutPage, ProgressStatus } from '@components'
 import { queryAPI } from '@api'
 import { Styled } from './styled'
+import { Typography } from '@material-ui/core'
 
 const StatusPage = () => {
     const [data, setData] = useState<null>(null)
@@ -21,11 +22,7 @@ const StatusPage = () => {
 
     useEffect(() => {
         noteStore.clientInfo.idClient.length > 0 &&
-            queryAPI(
-                `http://localhost:1337/deliveries?${getAllIds(noteStore.clientInfo.idClient).join('')}`,
-                setData,
-                setError,
-            )
+            queryAPI(`http://localhost:1337/deliveries?${getAllIds(noteStore.clientInfo.idClient).join('')}`, setData, setError)
     }, [])
 
     if (hasError) {
@@ -36,15 +33,17 @@ const StatusPage = () => {
             <div>
                 {data ? (
                     data?.map((items: any) => {
+                        console.table(items)
+                        const result = JSON.parse(items.deliver)
                         return (
                             <Styled.WrapperContainer key={items.id}>
-
-                                <div>{items.id}</div>
-                                <div>{JSON.parse(items.deliver).name}</div>
-                                <div>{JSON.parse(items.deliver).phone}</div>
-                                <div>{JSON.parse(items.deliver).address}</div>
-                                <div>{JSON.parse(items.deliver).email}</div>
-                                <div>{JSON.parse(items.deliver).delivery.length}</div>
+                                <Styled.WrapperRow>
+                                    <Typography variant="h5">
+                                        {result.name} ваш № заказа:{items.id}
+                                    </Typography>
+                                    <Typography variant="subtitle1">привезем по адресу: {result.address}</Typography>
+                                </Styled.WrapperRow>
+                                <ProgressStatus status={result.status} timeInterval="Доставка с 12:20 21.01.2022" />
                             </Styled.WrapperContainer>
                         )
                     })

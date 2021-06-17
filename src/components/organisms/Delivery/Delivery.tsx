@@ -36,7 +36,7 @@ export const DeliveryForm: FC<TDelivery> = ({ setStatus }) => {
         onSubmit: values => {
             putDeliver(
                 'http://localhost:1337/deliveries',
-                JSON.stringify({ ...values, ...{ delivery: noteStore.notes } }, null, 2),
+                JSON.stringify({ ...values, ...{ delivery: noteStore.notes }, ...{ status: 0 } }, null, 2),
             ).then(data => {
                 data && noteStore.addCilentInfo(data?.data.id)
                 noteStore?.clearNote()

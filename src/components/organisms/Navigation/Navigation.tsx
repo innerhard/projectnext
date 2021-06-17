@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { AppBar, Toolbar, Button, Typography, IconButton, InputBase } from '@material-ui/core'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
@@ -9,8 +9,20 @@ import { Skeleton } from '@material-ui/lab'
 import { Styled } from './styled'
 import { useNotesStore } from '@store'
 import { Observer } from 'mobx-react'
+import debounce from 'lodash.debounce'
+import { queryAPI } from '@api'
 
 export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
+    const [searchValue, setValue] = useState(null)
+    const [dataQuery, setData] = useState(null)
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        if (searchValue !== null) {
+            queryAPI(`http://localhost:1337/products?productName_contains=${searchValue}`, setData, setError)
+        }
+    }, [searchValue])
+
     const noteStore = useNotesStore()
     const menuItems = data?.map(item => {
         const { id, href, description } = item
@@ -35,6 +47,7 @@ export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
     return (
         <Observer>
             {() => {
+                console.log(dataQuery)
                 return (
                     <AppBar position="static" color="inherit" style={{ boxShadow: 'none', gridColumn: 2 }}>
                         <Toolbar>
@@ -49,7 +62,12 @@ export const Navigation: FC<TNavigation> = ({ data }): JSX.Element => {
                             </Typography>
                             <Styled.WrapperSearch>
                                 <SearchIcon />
-                                <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
+                                <InputBase
+                                    placeholder="Search…"
+                                    inputProps={{ 'aria-label': 'search' }}
+                                    //@ts-ignore
+                                    onChange={e => debounce(() => setValue(e.target.value), 1500)()}
+                                />
                             </Styled.WrapperSearch>
                             <Link href="/basket">
                                 <IconButton aria-label="cart">

@@ -15,14 +15,13 @@ const WrapperFilter = styled.div`
     grid-column-end: 12 span;
 `
 const WrapperCard = styled.div`
-    height: fit-content;
-    grid-column-end: 12 span;
+    grid-column-end: 6 span;
 
     @media (min-width: ${theme.breakpoint.desktopSm}px) {
-        grid-column-end: 6 span;
+        grid-column-end: 4 span;
     }
     @media (min-width: ${theme.breakpoint.desktopMd}px) {
-        grid-column-end: 4 span;
+        grid-column-end: 3 span;
     }
 `
 

@@ -22,9 +22,7 @@ export const Card: FC<TCardProps> = ({ id, title, description, linkImage, alt, p
             {() => (
                 <Styled.WrapperCard key={id}>
                     <Styled.WrapperCardTitle>
-                        <Typography variant="h5" color="primary">
-                            {title}
-                        </Typography>
+                        <Styled.CardTitle>{title}</Styled.CardTitle>
                     </Styled.WrapperCardTitle>
                     <Link passHref href={`/course/${id}`}>
                         <Styled.WrapperImage>

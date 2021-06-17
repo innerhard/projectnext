@@ -38,8 +38,7 @@ export const Lesson = () => {
                 !noteStore?.filter.clothes &&
                 !noteStore?.filter.medications &&
                 !noteStore?.filter.toys)
-            { return <Styled.WrapperCard key={id}>
-                <Card
+            { return <Card
                     id={id}
                     description={description}
                     title={productName}
@@ -47,7 +46,7 @@ export const Lesson = () => {
                     linkImage={link}
                     alt="Test"
                 />
-            </Styled.WrapperCard>
+
             }
 
             if(noteStore?.filter.[type] && !noteStore?.filter.cat && !noteStore?.filter.dog) {

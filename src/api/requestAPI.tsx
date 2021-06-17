@@ -1,7 +1,7 @@
 //@ts-nocheck
-import React from 'react'
+import React, { useRef, useCallback } from 'react'
+import debounce from 'lodash.debounce'
 import axios from 'axios'
-
 
 export const getAPI = axios.post('http://localhost:1337/auth/local', {
     identifier: 'innerhard@gmail.com',
@@ -11,7 +11,7 @@ export const getAPI = axios.post('http://localhost:1337/auth/local', {
 export const queryAPI = (
     link: string,
     setData: { (value: React.SetStateAction<null>): void; (arg0: any): void },
-    setError: { (value: React.SetStateAction<boolean>): void; (arg0: boolean): void },
+    setError: (value: ((prevState: null) => null) | null) => void,
 ) => {
     getAPI.then(item => {
         if (item.status === 200) {
